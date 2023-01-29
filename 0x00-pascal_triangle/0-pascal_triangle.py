@@ -15,26 +15,27 @@ def pascal_triangle(n):
 
   pascal_triangle = []
   if n <= 0:
-    return pascal_triangle
+    raise ValueError("n must be greater than 0")
 
-  previous = [1]
+  previous = []
+  for i in range(n):
+    temp_list = []
+    for j in range(i + 1):
+      if j == 0 or j== i:
+        temp_list.append(1)
 
-  for row_i in range(n):
-    rowlist = []
-    if row_i == 0:
-      rowlist = [1]
+      else:
+        temp_list.append(previous[i - 1][j - 1] + previous[i - 1][j]) 
 
-    else:
-      for i in range(row_i + 1):
-        if i == 0:
-          rowlist.append(0 + previous[i])
-        elif i == (row_i):
-          rowlist.append(previous[i -1] + 0)
+    previous.append(temp_list)
 
-        else:
-          row_i.append(previous[i - 1] + previous[i])
 
-    previous = rowlist
-    pascal_triangle.append(rowlist)
+  for i in range(n):
+    for j in range(n - i - 1):
+      print(format(" ", "<2"), end=" ")
 
-  return pascal_triangle
+    for j in range(i + 1):
+      print(format(previous[i][j], "<4"), end=" ")
+
+    print()
+
