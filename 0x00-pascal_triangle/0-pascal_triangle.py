@@ -6,27 +6,35 @@ def pascal_triangle(n):
   Returns:
       list: returns empty list if n <= 0 or list of lists of integers
       representing Pascal's triangle of n otherwise
+      parameters:
+      n[init]
   """
-  if n <= 0:
-    return []
   
-  pascal_triangle, buffer_list = [], []
-  for x in range(n):
-    if x == 0:
-      pascal_triangle.append([1])
-      continue
-    if x == 1:
-      pascal_triangle.append([1, 1])
-      continue
-    
-    sum_list = pascal_triangle[-1]
-    for i in range(len(sum_list) + 1):
-      if i in [0, len(sum_list)]:
-        buffer_list.append(1)
-        continue
-      buffer_list.append(sum_list[i] + sum_list[i - 1])
-    
-    pascal_triangle.append(buffer_list)
-    buffer_list = []
-    
+  if type(n) is not int:
+    raise TypeError("n must be an integer")
+
+  pascal_triangle = []
+  if n <= 0:
+    return pascal_triangle
+
+  previous = [1]
+
+  for row_i in range(n):
+    rowlist = []
+    if row_i == 0:
+      rowlist = [1]
+
+    else:
+      for i in range(row_i + 1):
+        if i == 0:
+          rowlist.append(0 + previous[i])
+        elif i == (row_i):
+          rowlist.append(previous[i -1] + 0)
+
+        else:
+          row_i.append(previous[i - 1] + previous[i])
+
+    previous = rowlist
+    pascal_triangle.append(rowlist)
+
   return pascal_triangle
