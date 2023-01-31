@@ -1,23 +1,28 @@
 #!/usr/bin/python3
+#python program that draws a pascal triangle
+#the program will return a list of integers representing pascal triangle of size n
 def pascal_triangle(n):
-  """draws a pascal triangle
-  Args:
-      n (n): size of triangle
-  Returns:
-      list: returns empty list if n <= 0 or list of lists of integers
-      representing Pascal's triangle of n otherwise
-      parameters:
-      n[init]
-  """
+  '''a function to that draws a psacal triangle
+      Returns:
+            a list of integers representing pascal triangle of n
+            an empty list if n <= 0
+      Assumes that n is always an integer 
+      Args:
+            n (n): size of triangle
+  '''
   
+  #check if n is an integer
   if type(n) is not int:
     raise TypeError("n must be an integer")
 
-  pascal_triangle = []
+  #check if n is greater than zero
   if n <= 0:
     raise ValueError("n must be greater than 0")
 
+ #set the current list
   previous = []
+
+ #generate the pattern list
   for i in range(n):
     temp_list = []
     for j in range(i + 1):
@@ -29,7 +34,7 @@ def pascal_triangle(n):
 
     previous.append(temp_list)
 
-
+#print the pascal triangle pattern
   for i in range(n):
     for j in range(n - i - 1):
       print(format(" ", "<2"), end=" ")
