@@ -1,15 +1,12 @@
 #!/usr/bin/python3
-#python program that draws a pascal triangle
-#the program will return a list of integers representing pascal triangle of size n
+"""
+Pascal's Triangle
+"""
 def pascal_triangle(n):
-  '''a function to that draws a psacal triangle
-      Returns:
-            a list of integers representing pascal triangle of n
-            an empty list if n <= 0
-      Assumes that n is always an integer 
-      Args:
-            n (n): size of triangle
-  '''
+  """
+    Returns a list of lists of integers representing
+    the Pascal’s triangle of n or an empty list if n <= 0
+  """
   
   triangle = list()
   triangle.append([1])
@@ -22,7 +19,9 @@ def pascal_triangle(n):
     triangle.append(row)
   return triangle
 
+'''
 if __name__=='__main__':
-  tr = pascal_triangle(6)
+  tr = pascal_triangle()
   for lst in tr:
     print (lst)
+'''
