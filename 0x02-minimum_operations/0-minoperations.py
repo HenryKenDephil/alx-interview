@@ -26,7 +26,7 @@ def minOperations(n):
         count += 1
         if operations % count == 0:
             while operations % count == 0 and operations != 1:
-                operations /= count
+                operations /= count #operations = operations/count
                 arr.append(count)
 
     return sum(arr)
