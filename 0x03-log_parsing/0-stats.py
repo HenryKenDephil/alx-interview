@@ -1,48 +1,55 @@
 #!/usr/bin/python3
 """
- Log Parsing
+A script that reads standard input line by line and computes metrics
 """
-from sys import stdin
 
 
-def printstats(file_size, status_codes):
+def parseLogs():
     """
-    This prints statistics at the beginning and every 10 lines
-    This will also be called on a Keyboard interruption
+    Reads logs from standard input and generates reports
+    Reports:
+        * Prints log size after reading every 10 lines & at KeyboardInterrupt
+    Raises:
+        KeyboardInterrupt (Exception): handles this exception and raises it
     """
-    print("File size: " + str(file_size))
-    for code in sorted(status_codes):
-        if status_codes[code] > 0:
-            print(code + ": " + str(status_codes[code]))
+    stdin = __import__('sys').stdin
+    lineNumber = 0
+    fileSize = 0
+    statusCodes = {}
+    codes = ('200', '301', '400', '401', '403', '404', '405', '500')
+    try:
+        for line in stdin:
+            lineNumber += 1
+            line = line.split()
+            try:
+                fileSize += int(line[-1])
+                if line[-2] in codes:
+                    try:
+                        statusCodes[line[-2]] += 1
+                    except KeyError:
+                        statusCodes[line[-2]] = 1
+            except (IndexError, ValueError):
+                pass
+            if lineNumber == 10:
+                report(fileSize, statusCodes)
+                lineNumber = 0
+        report(fileSize, statusCodes)
+    except KeyboardInterrupt as e:
+        report(fileSize, statusCodes)
+        raise
 
 
-line_num = 0
-file_size = 0
-status_code = 0
-status_codes = ([200, 301, 400, 401,
-                403, 404, 405, 500])
+def report(fileSize, statusCodes):
+    """
+    Prints generated report to standard output
+    Args:
+        fileSize (int): total log size after every 10 successfully read line
+        statusCodes (dict): dictionary of status codes and counts
+    """
+    print("File size: {}".format(fileSize))
+    for key, value in sorted(statusCodes.items()):
+        print("{}: {}".format(key, value))
 
-try:
-    for line in stdin:
-        line_num += 1
-        split_line = line.split()
 
-        if len(split_line) > 1:
-            file_size += int(split_line[-1])
-
-        if len(split_line) > 2 and split_line[-2].isnumeric():
-            status_code = line_num
-        else:
-            status_code = 0
-
-        if status_code in status_codes:
-            status_codes[status_code] += 1
-
-        if line_num % 10 == 0:
-            printstats(file_size, status_codes)
-
-    printstats(file_size, status_codes)
-
-except (KeyboardInterrupt):
-    printstats(file_size, status_codes)
-    raise
+if __name__ == '__main__':
+    parseLogs()
