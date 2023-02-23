@@ -1,9 +1,12 @@
 #!/usr/bin/python3
+
 '''
 utf8 validation
+
 '''
 
 from typing import List
+
 
 def validUTF8(data: List[int]) -> bool:
     '''
@@ -17,6 +20,7 @@ def validUTF8(data: List[int]) -> bool:
         return True if data is a valid UTF-8 encoding
         else return False
     '''
+        
     def check(num):
         '''
         a method that checks if the data/integer  is in byte form
@@ -29,6 +33,7 @@ def validUTF8(data: List[int]) -> bool:
             mask >>= 1 # shifting mask by 1 to the right
             i += 1  # increment counter by  1 
         return i
+    
     
     i = 0
     while i < len(data):
@@ -43,4 +48,5 @@ def validUTF8(data: List[int]) -> bool:
             if cur != 1:
                 return False
             i += 1
+            
     return True
