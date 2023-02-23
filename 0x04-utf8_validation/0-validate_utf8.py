@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 
-''' UTF-8 Validation '''
+'''
+a method that determines if a given data
+set represents a valid UTF-8 encoding
+'''
+
 
 from typing import List
 
@@ -13,7 +17,7 @@ def validUTF8(data: List[int]) -> bool:
     Args:
         data: a list of of integers
 
-    Returns:
+    Return:
         return True if data is a valid UTF-8 encoding
         else return False
     '''
