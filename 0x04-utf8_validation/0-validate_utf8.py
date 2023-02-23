@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-'''utf8 validation'''
+'''
+utf8 validation
+'''
 
 from typing import List
 
@@ -17,8 +19,8 @@ def validUTF8(data: List[int]) -> bool:
     '''
     def check(num):
         '''
-        a method that checks if the data/integer in byte form
-        the data must represent 1 byte of data
+        a method that checks if the data/integer  is in byte form
+        the integer must represent 1 byte of data
         '''
         mask = 1 << 7 #shifting integer to byte form (n-1 or 8-1)
         i = 0   #  counter
