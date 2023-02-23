@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 
-'''
-utf8 validation
-
-'''
+''' UTF-8 Validation '''
 
 from typing import List
 
