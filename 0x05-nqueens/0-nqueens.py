@@ -24,6 +24,8 @@ if __name__ == "__main__":
     reslt: List = list()
 
     def solve_queens(row, n, reslt):
+        '''function solve_queens by placements'''
+
         if (row == n):
             print(reslt)
         else:
@@ -35,6 +37,7 @@ if __name__ == "__main__":
                     reslt.remove(placement)
 
     def valid_placement(reslt, placement):
+        '''validate placement of queens'''
         for queen in reslt:
             if queen[1] == placement[1]:
                 return False
