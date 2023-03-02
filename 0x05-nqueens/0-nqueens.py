@@ -9,6 +9,10 @@ from typing import List
 
 
 if __name__ == "__main__":
+    '''
+    checking length of arguments
+    checking data type
+    '''
     if len(argv) != 2:
         print('Usage: nqueens N')
         exit(1)
@@ -43,7 +47,7 @@ if __name__ == "__main__":
         '''
         validate placement of queens
         '''
-        
+
         for queen in reslt:
             if queen[1] == placement[1]:
                 return False
