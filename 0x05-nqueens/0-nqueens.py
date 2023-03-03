@@ -12,6 +12,16 @@ if __name__ == "__main__":
     '''
     checking length of arguments
     checking data type
+
+    Args:
+        reslt: list of queens
+        n: number of  queens
+        rows: number of rows for the queen placement
+        placement:  list of queen placement
+    
+    Return:
+        returns a boolean if queens are present or  not
+        print the list of queens in the chaseboard
     '''
     if len(argv) != 2:
         print('Usage: nqueens N')
