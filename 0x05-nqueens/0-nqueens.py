@@ -17,21 +17,21 @@ if __name__ == "__main__":
         print('N must be at least 4')
         exit(1)
 
-    solution = []
+    reslt = []
 
-    def solve_queens(row, n, solution):
+    def solve_queens(row, n, reslt):
         if (row == n):
-            print(solution)
+            print(reslt)
         else:
             for col in range(n):
                 placement = [row, col]
-                if valid_placement(solution, placement):
-                    solution.append(placement)
-                    solve_queens(row + 1, n, solution)
-                    solution.remove(placement)
+                if valid_placement(reslt, placement):
+                    reslt.append(placement)
+                    solve_queens(row + 1, n, reslt)
+                    reslt.remove(placement)
 
-    def valid_placement(solution, placement):
-        for queen in solution:
+    def valid_placement(reslt, placement):
+        for queen in reslt:
             if queen[1] == placement[1]:
                 return False
             if (queen[0] + queen[1]) == (placement[0] + placement[1]):
@@ -40,4 +40,4 @@ if __name__ == "__main__":
                 return False
         return True
 
-    solve_queens(0, n, solution)
+    solve_queens(0, n, reslt)
