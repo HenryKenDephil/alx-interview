@@ -35,7 +35,7 @@ if __name__ == "__main__":
         print('N must be at least 4')
         exit(1)
 
-    reslt: List = list()
+    reslt = []
 
     def solve_queens(row, n, reslt):
         '''
