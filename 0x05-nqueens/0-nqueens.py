@@ -2,27 +2,9 @@
 '''
 Module that solves the N Queens puzzle
 '''
-
 from sys import argv, exit
-from typing import List
-
-
 
 if __name__ == "__main__":
-    '''
-    checking length of arguments
-    checking data type
-
-    Args:
-        reslt: list of queens
-        n: number of  queens
-        rows: number of rows for the queen placement
-        placement:  list of queen placement
-    
-    Return:
-        returns a boolean if queens are present or  not
-        print the list of queens in the chaseboard
-    '''
     if len(argv) != 2:
         print('Usage: nqueens N')
         exit(1)
@@ -35,30 +17,21 @@ if __name__ == "__main__":
         print('N must be at least 4')
         exit(1)
 
-    reslt = []
+    solution = []
 
-    def solve_queens(row, n, reslt):
-        '''
-        function solve_queens by placements
-
-        '''
-
+    def solve_queens(row, n, solution):
         if (row == n):
-            print(reslt)
+            print(solution)
         else:
             for col in range(n):
                 placement = [row, col]
-                if valid_placement(reslt, placement):
-                    reslt.append(placement)
-                    solve_queens(row + 1, n, reslt)
-                    reslt.remove(placement)
+                if valid_placement(solution, placement):
+                    solution.append(placement)
+                    solve_queens(row + 1, n, solution)
+                    solution.remove(placement)
 
-    def valid_placement(reslt, placement):
-        '''
-        validate placement of queens
-        '''
-
-        for queen in reslt:
+    def valid_placement(solution, placement):
+        for queen in solution:
             if queen[1] == placement[1]:
                 return False
             if (queen[0] + queen[1]) == (placement[0] + placement[1]):
@@ -67,4 +40,4 @@ if __name__ == "__main__":
                 return False
         return True
 
-    solve_queens(0, n, reslt)
+    solve_queens(0, n, solution)
