@@ -13,6 +13,7 @@ def makeChange(coins, total):
     If total cannot be met by any number of coins you have, return -1
     '''
     if total <= 0:
+        #checks if all coins were met
         return 0
     table = [sys.maxsize for i in range(total + 1)]
     table[0] = 0
