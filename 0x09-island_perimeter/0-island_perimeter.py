@@ -5,7 +5,6 @@
 def island_perimeter(grid):
     '''returns the perimeter of the island described in grid'''
     counter = 0
-    #counter holds the number of counting points
     grid_max = len(grid) - 1  # index of the last list in the grid
     lst_max = len(grid[0]) - 1  # index of the last square in list
 
